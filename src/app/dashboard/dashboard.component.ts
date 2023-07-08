@@ -199,6 +199,6 @@ export class DashboardComponent implements OnInit{
       tooltip: {
         enabled: false
       }
-    }
+    };
   }
 }

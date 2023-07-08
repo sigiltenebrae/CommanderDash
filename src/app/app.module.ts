@@ -12,6 +12,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {NgScrollbarModule} from "ngx-scrollbar";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
+import {NgApexchartsModule} from "ng-apexcharts";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {MatButtonModule} from "@angular/material/button";
     MatIconModule,
     NgScrollbarModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    NgApexchartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

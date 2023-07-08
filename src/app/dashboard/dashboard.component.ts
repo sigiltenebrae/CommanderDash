@@ -1,4 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import { ChartComponent } from "ng-apexcharts";
+import {
+  ApexNonAxisChartSeries,
+  ApexResponsive,
+  ApexChart,
+  ApexFill,
+  ApexDataLabels,
+  ApexLegend
+} from "ng-apexcharts";
 
 @Component({
   selector: 'app-dashboard',
@@ -43,7 +52,41 @@ export class DashboardComponent implements OnInit{
   mtgColorBackground = {white: '#eeeeeebb', blue: '#64b5f6bb', black: '#9e9e9ebb', red: '#e57373bb', green: '#81c784bb'}
   mtgColorBorder = {white: '#e0e0e0bb', blue: '#42a5f5bb', black: '#757575bb', red: '#ef5350bb', green: '#66bb6abb'}
 
+  @ViewChild("chart") chart: ChartComponent;
+  public chartOptions: any;
+
   ngOnInit(): void {
   }
 
+  constructor() {
+    this.chartOptions = {
+      series: [44, 55, 41, 17, 15],
+      chart: {
+        width: 380,
+        type: "donut"
+      },
+      dataLabels: {
+        enabled: false
+      },
+      fill: {
+        type: "gradient"
+      },
+      legend: {
+        show: false
+      },
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: "bottom"
+            }
+          }
+        }
+      ]
+    };
+  }
 }

@@ -208,10 +208,26 @@ export class DashboardComponent implements OnInit {
             else {
               this.last_played.ratio = ratio_data.ratio;
               let series = this.winLossChartOptions.series;
-              series[0].data[0] = this.last_played.ratio;
-              window.ApexCharts.exec("winLoss" , "updateOptions", {
-                series: series
-              })
+              series[0].data[0] = Math.round(this.last_played.ratio * 100) / 100;
+              this.data.cd_api.getWinLossUser(this.data.user.id).then((user_ratio_data: any) => {
+                if (user_ratio_data.error) {
+                  console.error(user_ratio_data.error);
+                }
+                else {
+                  series[0].data[1] = Math.round(user_ratio_data.ratio * 100) / 100;
+                  this.data.cd_api.getAverageWinLoss().then((avg_ratio_data: any) => {
+                    if (avg_ratio_data.error) {
+                      console.error(avg_ratio_data.error);
+                    }
+                    else {
+                      series[0].data[2] = Math.round(avg_ratio_data.ratio * 100) / 100;
+                      window.ApexCharts.exec("winLoss" , "updateOptions", {
+                        series: series
+                      });
+                    }
+                  });
+                }
+              });
             }
           });
         }

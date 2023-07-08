@@ -76,12 +76,37 @@ export class ApiServiceService {
   }
 
   /**
+   * Get the average win/loss ratio for all users
+   */
+  public getAverageWinLoss(): Promise<any> {
+    return new Promise<any>((resolve) => {
+      this.http.post(environment.cd_api_url + '/users/win_loss', JSON.stringify({}), this.default_options).subscribe({
+        next: (data: any) => { resolve(data); },
+        error: (error) => { console.error(error); resolve(null); }
+      });
+    });
+  }
+
+  /**
    * Get the win/loss ratio for the given deck
    * @param id ID of the deck to search
    */
   public getWinLossDeck(id: number): Promise<any> {
     return new Promise<any>((resolve) => {
       this.http.post(environment.cd_api_url + '/deck/win_loss', JSON.stringify({id: id}), this.default_options).subscribe({
+        next: (data: any) => { resolve(data); },
+        error: (error) => { console.error(error); resolve(null); }
+      });
+    });
+  }
+
+  /**
+   * Get the win/loss ratio for the given user
+   * @param id ID of the user to search
+   */
+  public getWinLossUser(id: number): Promise<any> {
+    return new Promise<any>((resolve) => {
+      this.http.post(environment.cd_api_url + '/user/win_loss', JSON.stringify({id: id}), this.default_options).subscribe({
         next: (data: any) => { resolve(data); },
         error: (error) => { console.error(error); resolve(null); }
       });

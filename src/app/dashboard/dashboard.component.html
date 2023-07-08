@@ -1,0 +1,101 @@
+<div style="width: 100vw; height: 100%; padding: 10px">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-md-8 col-lg-5 col-xl-4" style="margin-top: 5px;">
+        <mat-card style="height: 100%; padding: 10px;">
+          <div class="container">
+            <h3>Active Games:</h3>
+            <ng-scrollbar style="max-height: 350px;"
+                          autoHeightDisabled="false"
+                          visibility="hover"
+                          pointerEventsMethod="scrollbar">
+              <div class="col" style="overflow: hidden">
+                <div class="row" *ngFor="let i of [1, 2]" style="margin-top: 5px; margin-right: 5px">
+                  <div class="container dashboard-active-game-wrapper">
+                    <div class="row">
+                      <div class="col">
+                        <div class="row" style="margin-top: 5px; padding: 0 5px 0 5px">
+                          <p *ngIf="windowWidth < 540">Test Game {{i}}</p>
+                          <p *ngIf="windowWidth >= 540">Test Game {{i}} - Commander</p>
+                        </div>
+                        <div class="row" style="margin-top: 5px; padding: 0 5px 0 5px">
+                          <p>Players: 0 of 5</p>
+                        </div>
+                      </div>
+                      <div class="col-6 col-xl-4">
+                        <div class="row" style="justify-content: right; padding: 5px">
+                          <button mat-raised-button color="accent" style="width: 100px">JOIN</button>
+                        </div>
+                        <div class="row" style="margin-top: 5px; text-align: right">
+                          <p>Time: 00:00</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-scrollbar>
+          </div>
+        </mat-card>
+      </div>
+      <div class="col" style="margin-top: 5px;">
+        <mat-card style="padding: 10px; height: 100%">
+          <div class="container">
+            <h3>Last Played:</h3>
+            <div class="row">
+              <div class="col">
+                <div class="row">
+                  <h5>Some of You May Die</h5>
+                  <h5>Commander: Extus Oriq Overlord // Awaken the Blood Avatar</h5>
+                  <h5>Result: Loss</h5>
+                </div>
+                <div class="row">
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+      <div class="col" style="margin-top: 5px;">
+        <mat-card style="padding: 10px; height: 100%">
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <h3>Deck Color Distribution</h3>
+
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+    <div class="row" style="margin: 10px">
+      <div class="col-1"></div>
+      <div class="col-12 col-lg-10">
+        <div class="row" style="text-align: center; margin-top: 20px; margin-bottom: 10px"><h3>Recent Decks:</h3></div>
+        <div class="row" style="height: 100%">
+          <ng-scrollbar
+            track="horizontal"
+            autoWidthDisabled="false"
+            visibility="hover"
+            pointerEventsMethod="scrollbar" style="height:200px">
+            <div class="row flex-nowrap">
+              <div *ngFor="let deck of decks.slice(0, 4); let i = index" class="col">
+                <div class="deck-crop">
+                  <div class="dashboard-deck-info">
+                    <h4>Deck Test Name Is Really Long Yay</h4>
+                    <h4>Sigiltenebrae</h4>
+                  </div>
+                  <div class="dashboard-deck-button"><button mat-raised-button color="accent">View</button></div>
+                  <img class="deck-crop-image" src="{{deck.image}}" style="opacity: 0.4; background-color: black">
+                </div>
+              </div>
+            </div>
+          </ng-scrollbar>
+        </div>
+      </div>
+      <div class="col-1"></div>
+    </div>
+  </div>
+</div>

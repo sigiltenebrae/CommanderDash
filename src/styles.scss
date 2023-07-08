@@ -1,0 +1,110 @@
+/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@import '../node_modules/@angular/material/theming';
+@include mat.core();
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+
+@import 'src/dark-theme';
+
+$mtg-white: #aeaeae;
+$mtg-blue: #0069c0;
+$mtg-black: #373737;
+$mtg-red: #ba000d;
+$mtg-green: #087f23;
+
+p, h1, h2, h3, h4, h5, h6, button {
+  font-family: Beleren, "Helvetica Neue", sans-serif !important;
+}
+
+.ng-scrollbar-thumb {
+  background-color: rgba(mat.get-color-from-palette($fddp-palette-primary-dark, 500), 0.9) !important;
+}
+
+.ng-scrollbar-track {
+  background-color: rgba(black, 0.6) !important;
+}
+
+@include mat.all-component-themes($fddp-theme-dark);
+
+//.dark-theme {
+//
+//}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.deck-crop {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  grid-row: 1;
+}
+
+.deck-crop-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 560px;
+  width: 360px;
+  margin-left: -30px;
+  margin-top: -70px;
+  opacity: 0.9;
+  background-color: black;
+  z-index: 1;
+}
+
+.mtg-card-wrapper {
+  position: relative;
+  width: 254px;
+  height: 355px;
+}
+
+.mtg-card-image {
+  position: absolute;
+  width: 254px;
+  height: 355px;
+}
+
+.toolbar-title {
+  height: 100%;
+  margin-top: 35px;
+}
+
+/**  Dashboard   **/
+.dashboard-active-game-wrapper {
+  background-color: rgba(black, 0.2);
+  height: 80px;
+  border-radius: 4px;
+  min-width: 200px;
+}
+
+.deck-crop .dashboard-deck-info {
+  position: absolute;
+  z-index: 2;
+  top: 5px;
+  left: 10px;
+  pointer-events: none;
+}
+
+.deck-crop .dashboard-deck-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 2;
+  display: none;
+}
+
+.deck-crop:hover .dashboard-deck-button {
+  display: block;
+}
+
+.deck-crop:hover .dashboard-deck-info {
+  opacity: 0.6;
+}

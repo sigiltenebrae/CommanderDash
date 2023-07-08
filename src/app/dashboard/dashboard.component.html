@@ -45,9 +45,13 @@
             <div class="row">
               <div class="col">
                 <div class="row">
-                  <h5>Some of You May Die</h5>
-                  <h5>Commander: Extus Oriq Overlord // Awaken the Blood Avatar</h5>
-                  <h5>Result: Loss</h5>
+                  <div *ngIf="last_played != null">
+                    <h5>{{last_played.name}}</h5>
+                    <div *ngIf="last_played.commanders != null && last_played.commanders.length > 0">
+                      <h5 *ngFor="let commander of last_played.commanders">{{commander.name}}</h5>
+                    </div>
+                    <h5>Result: {{last_played.won_last? 'Win': 'Loss'}}</h5>
+                  </div>
                 </div>
                 <div class="row">
                   <apx-chart
@@ -101,11 +105,11 @@
             visibility="hover"
             pointerEventsMethod="scrollbar" style="height:200px">
             <div class="row flex-nowrap">
-              <div *ngFor="let deck of decks.slice(0, 4); let i = index" class="col">
+              <div *ngFor="let deck of recent_decks; let i = index" class="col">
                 <div class="deck-crop">
                   <div class="dashboard-deck-info">
-                    <h4>Deck Test Name Is Really Long Yay</h4>
-                    <h4>Sigiltenebrae</h4>
+                    <h4>{{deck.name}}</h4>
+                    <h4>{{getUserFromId(deck.owner).name}}</h4>
                   </div>
                   <div class="dashboard-deck-button"><button mat-raised-button color="accent">View</button></div>
                   <img class="deck-crop-image" src="{{deck.image}}" style="opacity: 0.4; background-color: black">

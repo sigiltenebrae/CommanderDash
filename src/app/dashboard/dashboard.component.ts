@@ -7,37 +7,9 @@ import {SharedDataService} from "../../services/shared-data.service";
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit{
-  decks = [
-    {
-      name: "With Friends Like These...",
-      image: "https://drive.google.com/uc?export=view&id=16Hlu4NOaDM7LB293rZ_uG_i_HvNcAu4c"
-    },
-    {
-      name: "Dinobots",
-      image: "https://drive.google.com/uc?export=view&id=1L9orFFcv4AX5v9TUnQgGQS68KcqgtClC"
-    },
-    {
-      name: "Mandatory Fun",
-      image: "https://cards.scryfall.io/png/front/9/1/91c54ac0-0edc-406f-8a22-f2996f604f36.png?1592710296"
-    },
-    {
-      name: "Claim Your Prize",
-      image: "https://cards.scryfall.io/png/front/4/7/4707be12-b255-47ea-a938-f4b03a1e9247.png?1673918317"
-    },
-    {
-      name: "Temptations",
-      image: "https://cards.scryfall.io/png/front/1/3/13253f8d-1897-41e8-a904-9e57ac7eff0a.png?1686970071"
-    },
-    {
-      name: "X's and Oh No's",
-      image: "https://drive.google.com/uc?export=view&id=1-e6zCVrTMNmlz3jHhVCXbrh72-pEBUhc"
-    },
-    {
-      name: "Victorious In Warriors",
-      image: "https://cards.scryfall.io/png/front/2/c/2cb1d1da-6077-46b5-8c63-39882b8016f2.png?1567181270"
-    },
-  ]
+export class DashboardComponent implements OnInit {
+  recent_decks: any[] = [];
+  last_played: any = null;
 
   windowWidth: number = window.innerWidth;
   windowHeight: number = window.innerHeight;
@@ -198,10 +170,41 @@ export class DashboardComponent implements OnInit{
         enabled: false
       }
     };
-    this.data.cd_api.getDecks().then();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.data.cd_api.getDecks({sort: 'created', order: 'DESC', limit: 4}).then((decks_data: any) => {
+      if(decks_data.error) {
+        console.error(decks_data.error);
+      }
+      else {
+        if (decks_data.decks && decks_data.decks.length > 0) {
+          this.recent_decks = decks_data.decks;
+        }
+      }
+    });
+    this.data.cd_api.getLastPlayedDeck(this.data.getUser().id).then((last_played_data: any) => {
+      if (last_played_data.error) {
+        console.error(last_played_data.error);
+      }
+      else {
+        if (last_played_data.deck) {
+          this.last_played = last_played_data.deck;
+          this.data.cd_api.getCommanderForDeck(this.last_played.id).then((commander_data: any) => {
+            if (commander_data.error) {
+              console.error(commander_data.error);
+            }
+            else {
+              this.last_played.commanders = commander_data.commanders;
+              console.log(this.last_played.commanders);
+            }
+          });
+        }
+      }
+    });
+  }
 
-
+  public getUserFromId(id: number) {
+    return this.data.getUserFromId(id);
+  }
 }

@@ -50,7 +50,17 @@
                   <h5>Result: Loss</h5>
                 </div>
                 <div class="row">
-
+                  <apx-chart
+                    [series]="winLossChartOptions.series"
+                    [chart]="winLossChartOptions.chart"
+                    [dataLabels]="winLossChartOptions.dataLabels"
+                    [plotOptions]="winLossChartOptions.plotOptions"
+                    [yaxis]="winLossChartOptions.yaxis"
+                    [xaxis]="winLossChartOptions.xaxis"
+                    [fill]="winLossChartOptions.fill"
+                    [title]="winLossChartOptions.title"
+                    [tooltip]="winLossChartOptions.tooltip"
+                  ></apx-chart>
                 </div>
               </div>
             </div>
@@ -63,15 +73,15 @@
             <div class="row">
               <div class="col">
                 <h3>Deck Color Distribution</h3>
-                <div id="chart">
+                <div id="colorDistChart">
                   <apx-chart
-                    [series]="chartOptions.series"
-                    [chart]="chartOptions.chart"
-                    [labels]="chartOptions.labels"
-                    [fill]="chartOptions.fill"
-                    [dataLabels]="chartOptions.dataLabels"
-                    [responsive]="chartOptions.responsive"
-                    [legend]="chartOptions.legend"
+                    [series]="colorDistChartOptions.series"
+                    [chart]="colorDistChartOptions.chart"
+                    [xaxis]="colorDistChartOptions.xaxis"
+                    [yaxis]="colorDistChartOptions.yaxis"
+                    [stroke]="colorDistChartOptions.stroke"
+                    [markers]="colorDistChartOptions.markers"
+                    [fill]="colorDistChartOptions.fill"
                   ></apx-chart>
                 </div>
               </div>

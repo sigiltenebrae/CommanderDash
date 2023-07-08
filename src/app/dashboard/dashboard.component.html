@@ -54,17 +54,19 @@
                   </div>
                 </div>
                 <div class="row">
-                  <apx-chart
-                    [series]="winLossChartOptions.series"
-                    [chart]="winLossChartOptions.chart"
-                    [dataLabels]="winLossChartOptions.dataLabels"
-                    [plotOptions]="winLossChartOptions.plotOptions"
-                    [yaxis]="winLossChartOptions.yaxis"
-                    [xaxis]="winLossChartOptions.xaxis"
-                    [fill]="winLossChartOptions.fill"
-                    [title]="winLossChartOptions.title"
-                    [tooltip]="winLossChartOptions.tooltip"
-                  ></apx-chart>
+                  <div id="winLossChart">
+                    <apx-chart
+                      [series]="winLossChartOptions.series"
+                      [chart]="winLossChartOptions.chart"
+                      [dataLabels]="winLossChartOptions.dataLabels"
+                      [plotOptions]="winLossChartOptions.plotOptions"
+                      [yaxis]="winLossChartOptions.yaxis"
+                      [xaxis]="winLossChartOptions.xaxis"
+                      [fill]="winLossChartOptions.fill"
+                      [title]="winLossChartOptions.title"
+                      [tooltip]="winLossChartOptions.tooltip"
+                    ></apx-chart>
+                  </div>
                 </div>
               </div>
             </div>

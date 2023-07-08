@@ -49,6 +49,10 @@ export class ApiServiceService {
     });
   }
 
+  /**
+   * Get the commanders for the given deck.
+   * @param id ID of the deck to search
+   */
   public getCommanderForDeck(id: number): Promise<any> {
     return new Promise<any>((resolve) => {
       this.http.post(environment.cd_api_url + '/deck/commander', JSON.stringify({id: id}), this.default_options).subscribe({
@@ -65,6 +69,19 @@ export class ApiServiceService {
   public getLastPlayedDeck(id: number): Promise<any> {
     return new Promise<any>((resolve) => {
       this.http.post(environment.cd_api_url + '/deck/last_played', JSON.stringify({id: id}), this.default_options).subscribe({
+        next: (data: any) => { resolve(data); },
+        error: (error) => { console.error(error); resolve(null); }
+      });
+    });
+  }
+
+  /**
+   * Get the win/loss ratio for the given deck
+   * @param id ID of the deck to search
+   */
+  public getWinLossDeck(id: number): Promise<any> {
+    return new Promise<any>((resolve) => {
+      this.http.post(environment.cd_api_url + '/deck/win_loss', JSON.stringify({id: id}), this.default_options).subscribe({
         next: (data: any) => { resolve(data); },
         error: (error) => { console.error(error); resolve(null); }
       });

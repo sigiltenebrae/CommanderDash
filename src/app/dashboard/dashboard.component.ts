@@ -19,7 +19,8 @@ export class DashboardComponent implements OnInit {
 
   themeTextColor = 'rgba(255, 255, 255, 0.8)'
 
-  //@ViewChild("chart") colorDistChart: ChartComponent;
+  @ViewChild("colorDistChart") colorDistChart: ChartComponent;
+  @ViewChild("winLossChart") winLossChart: ChartComponent;
   public colorDistChartOptions: any;
   public winLossChartOptions: any;
 
@@ -36,6 +37,7 @@ export class DashboardComponent implements OnInit {
         },
       ],
       chart: {
+        id: "colorDist",
         toolbar: {
           show: false
         },
@@ -81,10 +83,11 @@ export class DashboardComponent implements OnInit {
       series: [
         {
           name: "Inflation",
-          data: [2.3, 0.6, 1.0]
+          data: [0.0, 0.0, 0.0]
         }
       ],
       chart: {
+        id: "winLoss",
         toolbar: {
           show: false
         },
@@ -196,7 +199,19 @@ export class DashboardComponent implements OnInit {
             }
             else {
               this.last_played.commanders = commander_data.commanders;
-              console.log(this.last_played.commanders);
+            }
+          });
+          this.data.cd_api.getWinLossDeck(this.last_played.id).then((ratio_data: any) => {
+            if (ratio_data.error) {
+              console.error(ratio_data.error);
+            }
+            else {
+              this.last_played.ratio = ratio_data.ratio;
+              let series = this.winLossChartOptions.series;
+              series[0].data[0] = this.last_played.ratio;
+              window.ApexCharts.exec("winLoss" , "updateOptions", {
+                series: series
+              })
             }
           });
         }

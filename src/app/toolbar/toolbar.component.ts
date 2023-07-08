@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {ApiServiceService} from "../../services/api-service.service";
 
 @Component({
   selector: 'app-toolbar',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent {
+
+  constructor(public cd_api: ApiServiceService) {
+
+  }
+
 
 }

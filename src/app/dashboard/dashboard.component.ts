@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { ChartComponent } from "ng-apexcharts";
+import {SharedDataService} from "../../services/shared-data.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -50,10 +51,7 @@ export class DashboardComponent implements OnInit{
   public colorDistChartOptions: any;
   public winLossChartOptions: any;
 
-  ngOnInit(): void {
-  }
-
-  constructor() {
+  constructor(private data: SharedDataService) {
     this.colorDistChartOptions = {
       series: [
         {
@@ -200,5 +198,10 @@ export class DashboardComponent implements OnInit{
         enabled: false
       }
     };
+    this.data.cd_api.getDecks().then();
   }
+
+  ngOnInit(): void {}
+
+
 }

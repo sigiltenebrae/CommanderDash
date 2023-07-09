@@ -10,6 +10,8 @@ import {SharedDataService} from "../../services/shared-data.service";
 export class DashboardComponent implements OnInit {
   recent_decks: any[] = [];
   last_played: any = null;
+  user_dist: any = {W: 0, U: 0, B: 0, R: 0, G: 0}
+  all_dist: any = {W: 0, U: 0, B: 0, R: 0, G: 0}
 
   windowWidth: number = window.innerWidth;
   windowHeight: number = window.innerHeight;
@@ -29,11 +31,11 @@ export class DashboardComponent implements OnInit {
       series: [
         {
           name: "Sigiltenebrae",
-          data: [80, 50, 30, 40, 100]
+          data: [5, 5, 5, 5, 5]
         },
         {
           name: "All Players",
-          data: [20, 30, 40, 80, 20]
+          data: [5, 5, 5, 5, 5]
         },
       ],
       chart: {
@@ -229,6 +231,34 @@ export class DashboardComponent implements OnInit {
                 }
               });
             }
+          });
+        }
+      }
+    });
+    this.data.cd_api.getDecks().then((decks_data: any) => {
+      if (decks_data.error) {
+        console.error(decks_data.error);
+      }
+      else {
+        if (decks_data.decks && decks_data.decks.length > 0) {
+          for (let deck of decks_data.decks) {
+            for (let color of deck.colors) {
+              this.all_dist[color] ++;
+            }
+            if (deck.owner == this.data.user.id) {
+              for (let color of deck.colors) {
+                this.user_dist[color] ++;
+              }
+            }
+          }
+          for (let color of ["W", "U", "B", "R", "G"]) {
+            this.user_dist[color] *= this.data.getUsers().length;
+          }
+          let series = this.colorDistChartOptions.series;
+          series[0].data[0] = this.user_dist.W; series[0].data[1] = this.user_dist.U; series[0].data[2] = this.user_dist.B; series[0].data[3] = this.user_dist.R; series[0].data[4] = this.user_dist.G;
+          series[1].data[0] = this.all_dist.W; series[1].data[1] = this.all_dist.U; series[1].data[2] = this.all_dist.B; series[1].data[3] = this.all_dist.R; series[1].data[4] = this.all_dist.G;
+          window.ApexCharts.exec("colorDist" , "updateOptions", {
+            series: series
           });
         }
       }

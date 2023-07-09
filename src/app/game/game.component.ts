@@ -14,4 +14,8 @@ export class GameComponent {
   constructor(private data: SharedDataService, private route: ActivatedRoute, private router: Router) {
     data.location = 'games';
   }
+
+  getWindow() {
+    return {width: window.innerWidth, height: window.innerHeight}
+  }
 }

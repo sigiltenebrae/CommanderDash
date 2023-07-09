@@ -1,6 +1,6 @@
 <div style="width: 100vw">
-  <div class="opponent-area">
-    <div style="width: 100%" class="row d-flex flex-wrap align-items-center justify-content-center">
+  <div class="opponent-area align-items-center justify-content-center" [style.display]="getWindow().width < 604? 'block': 'flex'">
+    <div style="width: 100%" class="row flex-wrap align-items-center justify-content-center">
       <div *ngFor="let c of [0,1,2,3,4]" class="col-auto">
         <div class="opponent-playmat"></div>
       </div>

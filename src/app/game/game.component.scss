@@ -1,0 +1,82 @@
+.opponent-area {
+  min-height: 214px;
+  max-height: calc(100vh - (409px + 60px));
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  position: absolute;
+  top: 10px;
+  left: 0;
+}
+
+.opponent-playmat {
+  height: 214px;
+  width: 604px;
+  margin: 10px 0 10px 0;
+  background-color: rgba(blue, 0.2);
+}
+
+.playmat-area {
+  height: 409px;
+  width: 100%;
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  overflow: auto;
+}
+
+.playmat-wrapper {
+  height: 409px;
+  width: 100%;
+  position: relative;
+}
+
+.playmat-user {
+  background-color: rgba(255, 0, 0, 0.4);
+  height: 409px;
+  width: 1144px;
+  position: absolute;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.hand-area {
+  height: 125px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+}
+
+.hand-wrapper {
+  height: 125px;
+  width: 100%;
+  position: relative;
+}
+
+.hand-user-opener {
+  background-color: rgba(0, 255, 0, 0.2);
+  position: absolute;
+  height: 60px;
+  width: 100%;
+  max-width: 1144px;
+  bottom: 0;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.hand-user {
+  background-color: rgba(0, 0, 255, 0.2);
+  position: absolute;
+  height: 105px;
+  width: 100%;
+  max-width: 1144px;
+  bottom: 10px;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+

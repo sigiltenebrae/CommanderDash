@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { ChartComponent } from "ng-apexcharts";
 import {SharedDataService} from "../../services/shared-data.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-dashboard',
@@ -21,12 +22,10 @@ export class DashboardComponent implements OnInit {
 
   themeTextColor = 'rgba(255, 255, 255, 0.8)'
 
-  @ViewChild("colorDistChart") colorDistChart: ChartComponent;
-  @ViewChild("winLossChart") winLossChart: ChartComponent;
   public colorDistChartOptions: any;
   public winLossChartOptions: any;
 
-  constructor(private data: SharedDataService) {
+  constructor(private data: SharedDataService, private route: ActivatedRoute, private router: Router) {
     this.colorDistChartOptions = {
       series: [
         {
@@ -267,5 +266,9 @@ export class DashboardComponent implements OnInit {
 
   public getUserFromId(id: number) {
     return this.data.getUserFromId(id);
+  }
+
+  public navigate(location: string) {
+    this.router.navigate([location]);
   }
 }

@@ -1,0 +1,21 @@
+<div style="width: 100vw">
+  <div class="opponent-area">
+    <div style="width: 100%" class="row d-flex flex-wrap align-items-center justify-content-center">
+      <div *ngFor="let c of [0,1,2,3,4]" class="col-auto">
+        <div class="opponent-playmat"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="playmat-area">
+    <div class="playmat-wrapper">
+      <div class="playmat-user"></div>
+    </div>
+  </div>
+  <div class="hand-area">
+    <div class="hand-wrapper">
+      <div class="hand-user-opener" [style.display]="hand_visible? 'none': 'block'" (click)="hand_visible=true"></div>
+      <div class="hand-user" [style.display]="hand_visible? 'block': 'none'" (mouseleave)="hand_visible=false"></div>
+    </div>
+  </div>
+</div>

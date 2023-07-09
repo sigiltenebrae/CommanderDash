@@ -7,23 +7,27 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import {RouterModule} from "@angular/router";
-import {MatToolbarModule} from "@angular/material/toolbar";
-import {MatIconModule} from "@angular/material/icon";
-import {NgScrollbarModule} from "ngx-scrollbar";
-import {MatCardModule} from "@angular/material/card";
-import {MatButtonModule} from "@angular/material/button";
-import {NgApexchartsModule} from "ng-apexcharts";
+import { Routes, RouterModule } from "@angular/router";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatIconModule } from "@angular/material/icon";
+import { NgScrollbarModule } from "ngx-scrollbar";
+import { MatCardModule } from "@angular/material/card";
+import { MatButtonModule } from "@angular/material/button";
+import { NgApexchartsModule } from "ng-apexcharts";
+import { GameComponent } from './game/game.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    GameComponent
   ],
   imports: [
+    RouterModule,
     RouterModule.forRoot([
-      {path: '', component: DashboardComponent}
+      {path: '', component: DashboardComponent},
+      {path: 'games', component: GameComponent}
     ]),
     BrowserModule,
     BrowserAnimationsModule,
@@ -36,6 +40,7 @@ import {NgApexchartsModule} from "ng-apexcharts";
     MatButtonModule,
     NgApexchartsModule
   ],
+  exports: [RouterModule],
   providers: [],
   bootstrap: [AppComponent]
 })

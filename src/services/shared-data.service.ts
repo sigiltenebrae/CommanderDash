@@ -6,6 +6,8 @@ import {ApiServiceService} from "./api-service.service";
 })
 export class SharedDataService {
 
+  location:string | undefined =  undefined;
+
   user: any = { id: 1 };
 
   users: any[] = [];

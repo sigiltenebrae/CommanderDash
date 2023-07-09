@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {ApiServiceService} from "../../services/api-service.service";
+import {SharedDataService} from "../../services/shared-data.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-toolbar',
@@ -8,9 +10,10 @@ import {ApiServiceService} from "../../services/api-service.service";
 })
 export class ToolbarComponent {
 
-  constructor(public cd_api: ApiServiceService) {
+  constructor(private data: SharedDataService) {}
 
+  getLocation() {
+    return this.data.location;
   }
-
 
 }
